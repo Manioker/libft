@@ -12,24 +12,26 @@
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	char	*dest;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	dest = (char *)malloc(i);
-	if (dest == NULL)
+#include "libft.h"
+
+char
+	*ft_strdup(const char *s1)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[i] != '\0')
+	while (s1[i])
 	{
-		dest[i] = s[i];
+		str[i] = s1[i];
 		i++;
 	}
-	return (dest);
+	str[i] = 0;
+	return (str);
 }
 
 // int	main(void)

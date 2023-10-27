@@ -14,19 +14,20 @@
 
 void	*ft_calloc(size_t n, size_t size)
 {
-	char	*dest;
-	size_t	i;
-	size_t	a;
+	void		*ptr;
+	long long	max;
 
-	i = 0;
-	a = n * size;
-	dest = (char *)malloc(a);
-	if (dest != malloc(a))
-		return (0);
-	while (a > i)
+	max = n * size;
+	if (n == 0 || size == 0)
 	{
-		dest[i] = '\0';
-		i++;
+		ptr = malloc(0);
+		return (ptr);
 	}
-	return (dest);
+	if (n > 2147483647 || size > 2147483647 || max > 2147483647)
+		return (NULL);
+	ptr = malloc(n * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, (n * size));
+	return (ptr);
 }

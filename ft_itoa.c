@@ -11,63 +11,54 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
-static char	*ft_reverse(char *a, char *b)
+static long	ft_count(long n)
 {
-	int		i;
-	char	c;
+	int	i;
 
 	i = 0;
-	while (a[i] != '\0')
+	if (n == 0)
+		return (1);
+	if (n < 0)
 		i++;
-	b[i] = '\0';
-	i--;
-	if (*a == '-')
+	while ((n > 0) || (n < 0))
 	{
-		c = '-';
-		a++;
+		n = n / 10;
+		i++;
 	}
-	while (*a != '\0')
-	{
-		b[i] = *a;
-		a++;
-		i--;
-	}
-	if (c == '-')
-		b[i] = '-';
-	return (b);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
 	char		*a;
 	int			i;
-	char		*b;
 	long int	c;
 
-	a = (char *)malloc(13);
-	i = 0;
+	i = ft_count(n);
 	c = n;
+	a = (char *)malloc((i + 1) * sizeof(char));
+	if (n == 0)
+		a[0] = '0';
+	if (a == NULL)
+		return (NULL);
 	if (c < 0)
 	{
-		a[i] = '-';
-		i++;
+		a[0] = '-';
 		c = -c;
-	}
-	while (c > 0)
-	{
-		a[i] = (c % 10) + '0';
-		c = c / 10;
-		i++;
+		n = -n;
 	}
 	a[i] = '\0';
-	b = (char *)malloc(i);
-	if (b == NULL)
-		return (NULL);
-	return (ft_reverse(a, b));
+	while (c > 0)
+	{
+		a[--i] = (c % 10) + '0';
+		c = c / 10;
+	}
+	return (a);
 }
 
-// int main()
+// int	main(void)
 // {
-// 	printf("%s\n", ft_itoa(-55));
+// 	printf("%s\n", ft_itoa(0));
 // }

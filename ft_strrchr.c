@@ -16,20 +16,28 @@ char	*ft_strrchr(const char *s, int c)
 {
 	char	*ptr;
 	char	*ptr1;
+	int i;
 
 	ptr = (char *)s;
+	i = 0;
 	while (*ptr != '\0')
 	{
-		if (*ptr != c)
+		if (*ptr != (char)c)
 			ptr++;
 		else
 		{
 			ptr1 = ptr;
 			ptr++;
+			i++;
 		}
 	}
-	if (c == '\0')
+	if ((char)c == '\0')
+	{
 		ptr1 = ptr;
+		i++;
+	}
+	if (i == 0)
+		return (NULL);
 	return (ptr1);
 }
 

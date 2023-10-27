@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef LIBFT_H
 #define LIBFT_H
-
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 int		ft_atoi(const char *str);
 void	*ft_bzero(void *ptr, size_t n);

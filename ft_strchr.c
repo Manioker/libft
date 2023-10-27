@@ -15,19 +15,28 @@
 char	*ft_strchr(const char *str, int c)
 {
 	char	*ptr;
+	int		i;
 
 	ptr = (char *)str;
+	i = 0;
 	while (*ptr != '\0')
 	{
-		if (*ptr != c)
+		if (*ptr != (char)c)
 			ptr++;
 		else
+		{
+			i++;
 			break ;
+		}
 	}
+	if ((char)c == '\0')
+		i++;
+	if (i == 0)
+		return (NULL);
 	return (ptr);
 }
 
 // int	main(void)
 // {
-// 	printf("%s", strchr("coucou ma caru ;)\n", 'p'));
+// 	printf("%s", strchr("tripouille", 'z'));
 // }
